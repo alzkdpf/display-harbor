@@ -23,6 +23,8 @@ rtk swiftc -O -parse-as-library -swift-version 5 -target "$(rtk proxy uname -m)-
   core/target/release/libdisplay_harbor_core.a \
   -framework SwiftUI -framework AppKit -framework ApplicationServices -framework ScreenCaptureKit \
   -o "$STAGE/Contents/MacOS/DisplayHarbor"
+rtk strip -S -x "$STAGE/Contents/MacOS/DisplayHarbor"
+rtk python3 scripts/check_binary_privacy.py "$STAGE/Contents/MacOS/DisplayHarbor"
 rtk cp native/Info.plist "$STAGE/Contents/Info.plist"
 rtk mkdir -p "$STAGE/Contents/Resources/third_party"
 rtk cp -R third_party/. "$STAGE/Contents/Resources/third_party/"

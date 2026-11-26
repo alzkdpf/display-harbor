@@ -15,3 +15,6 @@
 /work/
 /screenshots/
 /diagnostics/
+*.dSYM/
+*.o
+*.a
