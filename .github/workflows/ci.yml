@@ -1,0 +1,22 @@
+name: Build and privacy checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check publication files
+        run: python3 scripts/check_publication.py
+      - name: Select Rust stable
+        run: rustup update stable --no-self-update
+      - name: Check Rust formatting
+        run: cargo +stable fmt --check --manifest-path core/Cargo.toml
+      - name: Build and test
+        env:
+          RUSTUP_TOOLCHAIN: stable
+        run: bash build.sh

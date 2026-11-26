@@ -1,0 +1,17 @@
+/core/target/
+/dist/
+.DS_Store
+*.zip
+*.dmg
+*.log
+*.ips
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+/work/
+/screenshots/
+/diagnostics/
